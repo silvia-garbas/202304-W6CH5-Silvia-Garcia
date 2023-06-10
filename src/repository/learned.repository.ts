@@ -2,20 +2,20 @@ import fs from 'fs/promises';
 import createDebug from 'debug';
 const debug = createDebug('W6:SampleRepo');
 
-type User = {
+type Learned = {
   id: string;
-  user: string;
+  learned: string;
 };
 
 const file = './data.json';
 
-export class SampleRepo {
+export class LearnedRepo {
   constructor() {
     debug('Sample Repo');
   }
 
   async readAll() {
     const stringData = await fs.readFile(file, { encoding: 'utf-8' });
-    return JSON.parse(stringData) as User[];
+    return JSON.parse(stringData) as Learned[];
   }
 }
