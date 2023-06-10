@@ -1,15 +1,12 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
+branch="$(git symbolic-ref --short -q HEAD)"
 
-valid_branch_regex='^((hotfix|bugfix|feature)\/[a-zA-Z0-9\-]+)$'
-
-message="Please check your branch name."
-
-if [[ ! $local_branch_name =~ $valid_branch_regex ]]; then
-    echo -e "\033[0;31m$message"
-    exit 1
+if [[ "$branch" = "main" || "$branch" = "master" ]]; then
+  RED='\033[0;31m'
+  echo "${RED}Can't commit because you are the master/main branch"
+  NC='\033[0m'
+  echo "${NC}You can't commit directly to main branch, please commit from other branch"
+  exit 1
 fi
-
-exit 0
