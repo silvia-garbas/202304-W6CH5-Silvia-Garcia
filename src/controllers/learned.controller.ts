@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { SampleRepo } from '../repository/sample.repository.js';
+import { LearnedRepo } from '../repository/learned.repository.js';
 import createDebug from 'debug';
 const debug = createDebug('W6:SampleController');
 
-export class SampleController {
-  repo: SampleRepo;
+export class LearnedController {
+  repo: LearnedRepo;
   constructor() {
-    this.repo = new SampleRepo();
+    this.repo = new LearnedRepo();
     debug('Instantiated SampleController');
     debug(this.repo);
   }

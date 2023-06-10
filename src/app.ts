@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import createDebug from 'debug';
-import { sampleRouter } from './routers/sample.router.js';
+import { learnedRouter } from './routers/learned.router.js';
 const debug = createDebug('W6:App');
 
 export const app = express();
@@ -22,8 +22,19 @@ app.use((_req, _res, next) => {
   next();
 });
 
+
+
+
 app.get('/', (req, res) => {
-  res.send('Hello Express!');
+  res.send('What I supposedly learned... ');
 });
 
-app.use('/sample', sampleRouter);
+// S app.get('/', (req, res) =>{
+//   res.send('Esto lo he hecho yo')
+
+// })
+
+
+
+
+app.use('/learned', learnedRouter);
