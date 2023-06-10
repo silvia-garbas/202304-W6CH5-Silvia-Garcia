@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { LearnedRepo } from '../repository/learned.repository.js';
 import createDebug from 'debug';
-const debug = createDebug('W6:SampleController');
+const debug = createDebug('W6:LearnedController');
 
 export class LearnedController {
   repo: LearnedRepo;
