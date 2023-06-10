@@ -7,7 +7,7 @@ export class LearnedController {
   repo: LearnedRepo;
   constructor() {
     this.repo = new LearnedRepo();
-    debug('Instantiated SampleController');
+    debug('Instantiated LearnedController');
     debug(this.repo);
   }
 
