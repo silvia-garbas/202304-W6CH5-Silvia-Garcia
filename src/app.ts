@@ -29,12 +29,6 @@ app.get('/', (req, res) => {
   res.send('What I supposedly learned... ');
 });
 
-// S app.get('/', (req, res) =>{
-//   res.send('Esto lo he hecho yo')
-
-// })
-
-
 
 
 app.use('/learned', learnedRouter);
