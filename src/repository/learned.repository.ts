@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import createDebug from 'debug';
-import { stringify } from 'querystring';
 const debug = createDebug('W6:LearnedRepo');
 
 type Learned = {
@@ -46,20 +45,20 @@ export class LearnedRepo {
     }
   }
 
-  async patch (idToModify: string, newLearnedSkill: string){
-    const stringData = await fs.readFile(file, {encoding: 'utf-8'});
+  async patch(idToModify: string, newLearnedSkill: string) {
+    const stringData = await fs.readFile(file, { encoding: 'utf-8' });
     const learnedData: Learned[] = JSON.parse(stringData) as Learned[];
-    const indexToModify = learnedData.findIndex(learned => learned.id === idToModify);
-    if(indexToModify > -1){
+    const indexToModify = learnedData.findIndex(
+      (learned) => learned.id === idToModify
+    );
+    if (indexToModify > -1) {
       const learnedToModify = learnedData[indexToModify];
-      if(learnedToModify !== null){
+      if (learnedToModify !== null) {
         learnedToModify.learned = newLearnedSkill;
         learnedData[indexToModify] = learnedToModify;
-        await fs.writeFile(file, JSON.stringify(learnedData))
+        await fs.writeFile(file, JSON.stringify(learnedData));
       }
-
     }
-
   }
   // Lo dejo aquí para seguir probándolo:
   // async patch(id: string, learned: Learned) {
@@ -76,6 +75,4 @@ export class LearnedRepo {
   //   );
   //   await fs.writeFile(file, newData, { encoding: 'utf-8' });
   // }
-
 }
-
