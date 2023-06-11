@@ -20,17 +20,17 @@ export class LearnedController {
   }
 
   async post(req: Request, resp: Response) {
-    resp.send('Se ha añadido un nuevo item a su lista')
+    resp.send('Se ha añadido un nuevo item a su lista.');
     resp.send(await this.repo.post(req.body));
-
+  }
+  
+  async deleteById(req: Request, res: Response) {
+    res.send('Se ha borrado el item seleccinado.');
+    res.send(await this.repo.deleteById(req.params.id));
   }
 
-  // Para utilizarlo cuando tenga en repository el patch correspondiente
-  // patch(req: Request, res: Response) {
-  //   res.send('Patch Sample!: ' + req.body.learned);
-  // }
-
-  deleteById(req: Request, res: Response) {
-    res.send('Delete Sample!: ' + req.body.learned);
+  patch(req: Request, res: Response) {
+    res.send('Patch Sample!: ' + req.body.learned);
   }
+
 }

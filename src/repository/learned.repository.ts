@@ -25,19 +25,23 @@ export class LearnedRepo {
     return learnedData.find((value) => value.id === id);
   }
 
-  // A async post(learned: Learned){
-  //   const stringData = await fs.readFile(file, {encoding: 'utf-8'});
-  //   const LearnedData = stringData.push(learned) as Learned[]
-  //   await fs.writeFile(file, JSON.stringify(stringData))
+async post (learned: Learned){
+  const stringData = await fs.readFile(file, {encoding: 'utf-8'});
+  const learnedData = JSON.parse(stringData) as Learned[]
+  learnedData.push(learned);
+  const newLearnedData = JSON.stringify(learnedData)
+  await fs.writeFile(file, newLearnedData, { encoding: 'utf-8'})
+}
 
-  // }
-
-  async post(learned: Learned) {
+  async deleteById(idToDelete: string) {
     const stringData = await fs.readFile(file, { encoding: 'utf-8' });
-    const learnedData = JSON.parse(stringData) as Learned[];
-    const newLearnedData = JSON.stringify([...learnedData, learned]);
-    await fs.writeFile(file, newLearnedData, { encoding: 'utf-8' });
+    const learnedData: Learned[] = JSON.parse(stringData) as Learned[];
+    const indexToDelete = learnedData.findIndex(
+      (learned) => learned.id === idToDelete
+    );
+    if (indexToDelete > -1) {
+      learnedData.splice(indexToDelete, 1);
+      await fs.writeFile(file, JSON.stringify(learnedData));
+    }
   }
-
-  // Async deleteById(id: string) {}
 }
