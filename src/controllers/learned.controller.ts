@@ -23,14 +23,21 @@ export class LearnedController {
     resp.send('Se ha añadido un nuevo item a su lista.');
     resp.send(await this.repo.post(req.body));
   }
-  
+
   async deleteById(req: Request, res: Response) {
     res.send('Se ha borrado el item seleccinado.');
     res.send(await this.repo.deleteById(req.params.id));
   }
 
-  patch(req: Request, res: Response) {
-    res.send('Patch Sample!: ' + req.body.learned);
+  async patch(req: Request, res: Response) {
+    res.send('Se ha actualizado el item');
+    res.send(
+      await this.repo.patch(req.body.idToModify, req.body.newLearnedSkill)
+    );
   }
-
+  // Lo dejo aquí para seguir probándolo:
+  // async patch(req: Request, res: Response) {
+  //   res.send(await this.repo.patch(req.body.id, req.body))
+  //   res.send('Updated data');
+  // }
 }

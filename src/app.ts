@@ -17,18 +17,10 @@ app.use(morgan('dev'));
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use((_req, _res, next) => {
-  debug('Soy un middleware');
-  next();
-});
-
-
 
 
 app.get('/', (req, res) => {
   res.send('What I supposedly learned... ');
 });
-
-
 
 app.use('/learned', learnedRouter);
