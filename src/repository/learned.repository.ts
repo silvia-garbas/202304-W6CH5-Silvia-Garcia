@@ -19,11 +19,25 @@ export class LearnedRepo {
     return JSON.parse(stringData) as Learned[];
   }
 
-async getById(id: string) {
+  async getById(id: string) {
     const stringData = await fs.readFile(file, { encoding: 'utf-8' });
-    const cucumberData = JSON.parse(stringData) as Learned[];
-    return cucumberData.find((value) => value.id === id);
-}
-}
+    const learnedData = JSON.parse(stringData) as Learned[];
+    return learnedData.find((value) => value.id === id);
+  }
 
+  // A async post(learned: Learned){
+  //   const stringData = await fs.readFile(file, {encoding: 'utf-8'});
+  //   const LearnedData = stringData.push(learned) as Learned[]
+  //   await fs.writeFile(file, JSON.stringify(stringData))
 
+  // }
+
+  async post(learned: Learned) {
+    const stringData = await fs.readFile(file, { encoding: 'utf-8' });
+    const learnedData = JSON.parse(stringData) as Learned[];
+    const newLearnedData = JSON.stringify([...learnedData, learned]);
+    await fs.writeFile(file, newLearnedData, { encoding: 'utf-8' });
+  }
+
+  // Async deleteById(id: string) {}
+}
